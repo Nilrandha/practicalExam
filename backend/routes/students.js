@@ -7,13 +7,26 @@ let Student = require("../models/student");
 router.route("/add").post((req,res)=>{
 
     const name = req.body.name;
-    const age = Number(req.body.age);
-    const gender = req.body.gender;
+    const id = Number(req.body.id);
+    const des = req.body.des;
+    const role = req.body.role;
+    const parent_card = Number(req.body.parent_card);
+    const time_duration = req.body.time_duration;
+    const details = req.body.details;
+    //const mobile = req.body.mobile;
+    
 
     const newStudent = new Student({
         name,
-        age,
-        gender
+        id,
+        des,
+        role,
+        parent_card,
+        time_duration,
+        details
+        //description
+        
+       
     })
 
     newStudent.save().then(()=>{
@@ -41,15 +54,20 @@ router.route("/").get((req,res)=>{
 
 
 //PUT
-router.route("/update/:id").put(async (req,res)=>{
-    let userId = req.params.id;
+router.route("/update/:idd").put(async (req,res)=>{
+    let userId = req.params.idd;
     //dre structure
-    const {name,age,gender} = req.body;
+    const {name,id,des,role,parent_card,time_duration,details} = req.body;
     
     const updateStudent ={
         name,
-        age,
-        gender
+        id,
+        des,
+        role,
+        parent_card,
+        time_duration,
+        details
+       // description
     }
     const update = await Student.findByIdAndUpdate(userId, updateStudent)
     .then(()=>{
