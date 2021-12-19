@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 function AllStudents() {
 
     const [students, setStudents] = useState([]);
@@ -21,7 +22,24 @@ function AllStudents() {
         //  getStudents();
     }, [])
 
+    
+     function deleteStudent(id){
 
+        // axios
+        // .delete(`http://localhost:8080/student/${id}`)
+        // .then(
+        //   alert("student deleted")
+        // )
+        // .catch(err => {
+        //   console.log(err);
+        // })
+
+        axios.delete(`http://localhost:8080/student/${id}`).then(response => {
+            console.log(response);
+            window.location.reload()
+          });
+    
+     }
 
 
     return (
@@ -45,7 +63,10 @@ function AllStudents() {
                                 <h6 className="card-title">Address: {student.details[0].address}</h6>
 
                                 <p className="card-text">{student.des}.</p>
-                                <button type="button" className="btn btn-danger">Delete</button>&nbsp;{/* */}
+                                <button type="button" className="btn btn-danger" onClick={()=>{
+                                deleteStudent(student._id);
+
+                                }}>Delete</button>&nbsp;{/* */}
                                 <button type="button" className="btn btn-warning">Update</button>
                             </div>
                         </div>

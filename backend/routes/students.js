@@ -78,7 +78,7 @@ router.route("/update/:idd").put(async (req,res)=>{
 })
 
 //Delete
- router.route("/delete/:id").delete(async (req,res)=>{
+ router.route("/:id").delete(async (req,res)=>{
         let userId = req.params.id;
 
       await Student.findByIdAndDelete(userId).then(()=>{

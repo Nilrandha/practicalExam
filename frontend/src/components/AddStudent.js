@@ -44,7 +44,7 @@ function AddStudent() {
 
         axios.post("http://localhost:8080/student/add", newStudent).then(() => {
             alert("Student Added")
-
+            window.location.reload()
 
         }).catch((err) => {
             alert(err)
